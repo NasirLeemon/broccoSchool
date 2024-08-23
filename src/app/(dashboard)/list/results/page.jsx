@@ -5,6 +5,7 @@ import Pagination from "@/components/Pagination";
 import Table from "@/components/Table";
 import Link from "next/link";
 import { resultsData, role } from "@/lib/data";
+import FormModal from "@/components/FormModal";
 const columns = [
   {
     header: "Subject Name",
@@ -39,7 +40,7 @@ const columns = [
     accessor: "action",
   },
 ];
-const AssignmentsListPage = () => {
+const ResultsListPage = () => {
   const renderRow = (item) => (
     <tr
       key={item.id}
@@ -59,9 +60,10 @@ const AssignmentsListPage = () => {
             </button>
           </Link>
           {role === "admin" && (
-            <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple">
-              <Image src="/delete.png" alt="" width={16} height={16} />
-            </button>
+            // <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaPurple">
+            //   <Image src="/delete.png" alt="" width={16} height={16} />
+            // </button>
+            <FormModal table="result" type="delete" id={item?.id} />
           )}
         </div>
       </td>
@@ -82,9 +84,10 @@ const AssignmentsListPage = () => {
               <Image src="/sort.png" alt="" width={14} height={14} />
             </button>
             {role === "admin" && (
-              <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
-                <Image src="/plus.png" alt="" width={14} height={14} />
-              </button>
+              // <button className="w-8 h-8 flex items-center justify-center rounded-full bg-lamaYellow">
+              //   <Image src="/plus.png" alt="" width={14} height={14} />
+              // </button>
+              <FormModal table="result" type="create" />
             )}
           </div>
         </div>
@@ -98,4 +101,4 @@ const AssignmentsListPage = () => {
   );
 };
 
-export default AssignmentsListPage;
+export default ResultsListPage;
